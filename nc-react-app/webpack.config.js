@@ -4,18 +4,19 @@ const webpack = require('webpack');
 module.exports = {
   entry: './index.js',
   output: {
-    path: __dirname + '/js',
-    filename: 'proto.js'
+    path: path.resolve('./../public/js/'),
+    filename: 'app.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react']
-        }
+        test: /\.jsx?$/,
+        use: ['babel-loader'],
+        exclude: /node_modules/
       }
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.json']
   }
 };
