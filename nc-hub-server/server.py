@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, request
 from flask import render_template
 
 app = Flask(__name__)
@@ -9,6 +9,9 @@ app.debug = True
 def send_index():
   return render_template('index.html')
 
+# @app.route('/start/', methods=['POST'])
+# def get_taxonomy():
+#   return request.form
 
 
 # Define routes for static files

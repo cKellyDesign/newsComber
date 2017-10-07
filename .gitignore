@@ -1,6 +1,7 @@
-lib
-bin
-include
-.Python
-pip-selfcheck.json
+**/lib
+**/bin
+**/include
+**/.Python
+**/pip-selfcheck.json
 **/.DS_Store
+**/node_modules

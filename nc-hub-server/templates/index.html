@@ -2,7 +2,7 @@
 {% block content %}
   <h1>Let's comb some news!</h1>
   <div class="row">
-    <form class="col col-md-6">
+    <form class="col col-md-6" method="POST" action="/start/">
       <div class="form-group">
         <label for="root_url">Enter a news site's root url to get started:</label>
         <input type="url" class="form-control" id="root_url" placeholder="http://nbcnews.com" />
