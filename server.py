@@ -10,6 +10,7 @@ def send_index():
   return render_template('index.html')
 
 
+
 # Define routes for static files
 @app.route('/css/<path:path>')
 def send_css(path):

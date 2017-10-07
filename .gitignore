@@ -3,3 +3,4 @@ bin
 include
 .Python
 pip-selfcheck.json
+**/.DS_Store

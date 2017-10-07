@@ -1,0 +1,17 @@
+<!doctype html>
+<head>
+  {% block head %}
+  <title>{% block title %}News Comber{% endblock %}</title>
+  <link rel="stylesheet" href="/css/bootstrap.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  {% endblock %}
+</head>
+<body>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+  {% block footer %}
+  <script src="/js/jquery-3.2.1.min.js"></script>
+  <script src="/js/app.js"></script>
+  {% endblock %}
+</body>
