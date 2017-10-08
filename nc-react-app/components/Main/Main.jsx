@@ -10,7 +10,7 @@ class Main extends React.Component {
     return (
       <section>
         <h1>Let's comb some news!!</h1>
-        <InitForm />
+        <InitForm setRootSite={this.props.setRootSite} />
       </section>
     );
   }
