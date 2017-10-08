@@ -9,7 +9,7 @@ class Main extends React.Component {
   render() {
     return (
       <section>
-        <h1>Let's comb some news!</h1>
+        <h1>Let's comb some news!!</h1>
         <InitForm />
       </section>
     );
