@@ -24,10 +24,9 @@ module.exports = function(grunt) {
       },
 
       install_hub_server: {
-        cwd: './nc-hub-server',
         cmd: [
           'virtualenv -p python3 nc-hub-server',
-          'source ./bin/activate',
+          'source ./nc-hub-server/bin/activate',
           'pip install Flask',
           'deactivate'
         ].join('&&')
