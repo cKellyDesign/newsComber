@@ -49,5 +49,5 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['run']);
 
   grunt.registerTask('run', ['concurrent:dev']);
-  grunt.registerTask('install', ['exec:install_hub_server', 'exec: install_react_app']);
+  grunt.registerTask('install', ['exec:install_hub_server', 'exec:install_react_app']);
 };
