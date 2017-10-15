@@ -1,0 +1,6 @@
+#progressList .current {
+  font-weight: bold; }
+
+#progressList .complete {
+  color: #aaa;
+  font-style: italic; }
