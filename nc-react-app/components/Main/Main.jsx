@@ -1,5 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { setRootUrl } from './../../redux/ActionCreators';
 import InitForm from './InitForm/InitForm';
+
+
+const mapStateToProps = (state) => {
+  return {
+    progStep: state.Progress.current_step,
+    mainState: {
+      ...state.Main,
+    }
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setRootSite: (url) => { dispatch(setRootUrl(url)); },
+  };
+}
+
 
 class Main extends React.Component {
   constructor(props) {
@@ -16,4 +35,6 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);
+
+export default MainContainer;

@@ -1,6 +1,6 @@
 import React from 'react';
-import MainContainer from './../redux/containers/MainContainer';
-import ProgressContainer from './../redux/containers/ProgressContainer';
+import MainContainer from './Main/Main';
+import ProgressContainer from './Progress/Progress';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 class App extends React.Component {

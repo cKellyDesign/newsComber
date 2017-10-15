@@ -1,4 +1,15 @@
+import { connect } from 'react-redux';
 import React from 'react';
+
+const mapStateToProps = (state) => {
+  return {
+    ...state.Progress,
+  }
+}
+
+// const mapDispatchToProps = (dispatch) => {
+
+// }
 
 class Progress extends React.Component {
   constructor(props) {
@@ -14,4 +25,6 @@ class Progress extends React.Component {
   }
 }
 
-export default Progress;
+const ProgressContainer = connect(mapStateToProps)(Progress);
+
+export default ProgressContainer;
