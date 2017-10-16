@@ -31220,7 +31220,7 @@ var _Main = __webpack_require__(192);
 
 var _Main2 = _interopRequireDefault(_Main);
 
-var _Progress = __webpack_require__(332);
+var _Progress = __webpack_require__(333);
 
 var _Progress2 = _interopRequireDefault(_Progress);
 
@@ -31316,6 +31316,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+__webpack_require__(332);
+
 var mapStateToProps = function mapStateToProps(state) {
   return {
     progStep: state.Progress.current_step,
@@ -31345,7 +31347,7 @@ var Main = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'section',
-        null,
+        { id: 'main' },
         _react2.default.createElement(
           'h1',
           null,
@@ -42498,6 +42500,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 332 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42525,12 +42533,18 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-__webpack_require__(333);
+__webpack_require__(334);
 
 var progressSteps = [{
   label: 'Define target site'
 }, {
   label: 'Determine site taxonomy'
+}, {
+  label: 'Select sections to comb'
+}, {
+  label: 'Confirm news articles'
+}, {
+  label: 'Save to database'
 }];
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -42590,7 +42604,7 @@ var Progress = function (_React$Component) {
 
       return _react2.default.createElement(
         'section',
-        null,
+        { id: 'progress' },
         _react2.default.createElement(
           'h3',
           null,
@@ -42619,7 +42633,7 @@ var ProgressContainer = (0, _reactRedux.connect)(mapStateToProps)(Progress);
 exports.default = ProgressContainer;
 
 /***/ }),
-/* 333 */
+/* 334 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

@@ -9,6 +9,15 @@ const progressSteps = [
   },
   {
     label: 'Determine site taxonomy'
+  },
+  {
+    label: 'Select sections to comb'
+  },
+  {
+    label: 'Confirm news articles'
+  },
+  {
+    label: 'Save to database'
   }
 ];
 
@@ -52,7 +61,7 @@ class Progress extends React.Component {
   render() {
     const { steps } = this.state;
     return (
-      <section>
+      <section id="progress">
         <h3>Progress</h3>
         <ol id="progressList">
           {steps.map((step, i) =>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setRootUrl } from './../../redux/ActionCreators';
 import InitForm from './InitForm/InitForm';
 
+require('./Main.scss');
 
 const mapStateToProps = (state) => {
   return {
@@ -19,7 +20,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 }
 
-
 class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +27,7 @@ class Main extends React.Component {
 
   render() {
     return (
-      <section>
+      <section id="main">
         <h1>Let's comb some news!!</h1>
         <InitForm setRootSite={this.props.setRootSite} />
       </section>
