@@ -6,12 +6,30 @@ class InitForm extends React.Component {
   constructor(props) {
     super(props);
     this.updateRootUrl = this.updateRootUrl.bind(this);
+    this.submitSite = this.submitSite.bind(this);
+  }
+
+  submitSite(url) {
+    $.ajax({
+      method: "POST",
+      url: 'http://localhost:5000/sites',
+      data: { baseurl: url },
+      dataType: "jsonp",
+      cache: false
+    })
+    .done((res) => {
+      console.log('RES!!!!', res);
+      this.props.setRootSite(url);
+    })
+    .fail((req, err) => {
+      console.log('FAIL!!!', err);
+    });
   }
 
   updateRootUrl(e) {
     e.preventDefault();
     let url = !!this.inputEl.value ? this.inputEl.value : 'http://nbcnews.com';
-    this.props.setRootSite(url)
+    this.submitSite(url);
   }
 
   render() {

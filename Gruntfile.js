@@ -12,9 +12,14 @@ module.exports = function(grunt) {
         cmd: 'http-server -p 9999'
       },
 
-      init_hub_server_env: {
+      init_hub_server: {
         cwd: './nc-hub-server/',
         cmd: 'source ./bin/activate && python server.py'
+      },
+
+      init_psql_server: {
+        cwd: './nc-psql-server',
+        cmd: 'source ./bin/activate && python psql.py'
       },
 
       start_psql: {
@@ -33,7 +38,7 @@ module.exports = function(grunt) {
 
       init_db: {
         cmd: 'initdb ./nc-psql-server/db'
-      }
+      },
 
       install_hub_server: {
         cmd: [
@@ -42,16 +47,46 @@ module.exports = function(grunt) {
           'pip install Flask',
           'deactivate'
         ].join('&&')
+      },
+
+      install_psql_server: {
+        cmd: [
+          'virtualenv -p python3 nc-psql-server',
+          'source ./nc-psql-server/bin/activate',
+          'pip install Flask',
+          'pip install flask_sqlalchemy',
+          'deactivate'
+        ].join('&&')
       }
     },
 
     concurrent: {
       dev: {
-        tasks: ['exec:serve_public', 'exec:build_react', 'exec:init_hub_server_env'],
+        tasks: [
+          'exec:serve_public', 
+          'exec:build_react',
+          'servers'
+        ],
         options: {
           logConcurrentOutput: true
         }
       },
+      servers: {
+        tasks: ['exec:init_psql_server', 'exec:init_hub_server'],
+        options: {
+          logConcurrentOutput: true
+        }
+      },
+      install: {
+        tasks: [
+          'exec:install_hub_server',
+          'exec:install_react_app',
+          ['exec:install_psql_server', 'exec:init_db']
+        ],
+        options: {
+          logConcurrentOutput: true
+        }
+      }
     }
   });
 
@@ -60,7 +95,9 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['run']);
 
+  grunt.registerTask('servers', ['exec:start_psql', 'concurrent:servers'])
+
   grunt.registerTask('run', ['concurrent:dev']);
   grunt.registerTask('kill', ['exec:stop_psql']);
-  grunt.registerTask('install', ['exec:init_db', 'exec:install_hub_server', 'exec:install_react_app']);
+  grunt.registerTask('install', ['concurrent:install']);
 };

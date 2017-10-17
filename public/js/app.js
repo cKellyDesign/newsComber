@@ -31419,20 +31419,39 @@ var InitForm = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (InitForm.__proto__ || Object.getPrototypeOf(InitForm)).call(this, props));
 
     _this.updateRootUrl = _this.updateRootUrl.bind(_this);
+    _this.submitSite = _this.submitSite.bind(_this);
     return _this;
   }
 
   _createClass(InitForm, [{
+    key: 'submitSite',
+    value: function submitSite(url) {
+      var _this2 = this;
+
+      $.ajax({
+        method: "POST",
+        url: 'http://localhost:5000/sites',
+        data: { baseurl: url },
+        dataType: "jsonp",
+        cache: false
+      }).done(function (res) {
+        console.log('RES!!!!', res);
+        _this2.props.setRootSite(url);
+      }).fail(function (req, err) {
+        console.log('FAIL!!!', err);
+      });
+    }
+  }, {
     key: 'updateRootUrl',
     value: function updateRootUrl(e) {
       e.preventDefault();
       var url = !!this.inputEl.value ? this.inputEl.value : 'http://nbcnews.com';
-      this.props.setRootSite(url);
+      this.submitSite(url);
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _react2.default.createElement(
         'form',
@@ -31449,7 +31468,7 @@ var InitForm = function (_React$Component) {
             type: 'url',
             placeholder: 'http://nbcnews.com',
             inputRef: function inputRef(el) {
-              _this2.inputEl = el;
+              _this3.inputEl = el;
             }
           })
         ),
@@ -31459,7 +31478,7 @@ var InitForm = function (_React$Component) {
             bsStyle: 'primary',
             type: 'submit',
             onClick: function onClick(e) {
-              _this2.updateRootUrl(e);
+              _this3.updateRootUrl(e);
             }
           },
           'Get site taxonomy'
