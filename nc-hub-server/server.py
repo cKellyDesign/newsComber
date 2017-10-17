@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify
-
+from flask_cors import CORS
 import requests
 
 app = Flask(__name__)
 app.debug = True
+CORS(app)
 
 # Define app routes
 @app.route('/')
@@ -13,12 +14,17 @@ def send_index():
 @app.route('/sites', methods=['GET', 'POST'])
 def sites():
   baseurl = request.args.get('baseurl', type=str)
-  queryURL = 'http://localhost:5001/%r' % baseurl
+  # print('~~~~~~~~~~~ baseurl %r' % baseurl)
+  # queryURL = 'http://localhost:5001/%r' % baseurl
   if request.method == 'POST':
+    queryURL = 'http://localhost:5001/addSite/%r' % baseurl
     r = requests.post(queryURL)
   else:
+    queryURL = 'http://localhost:5001/getSite/%r' % baseurl
     r = requests.get(queryURL)
-  return jsonify(res=r)
+
+  # print('~~~~~~~~~~~ r.baseurl %r' % r.baseurl)
+  return jsonify(res=r.baseurl)
 
 # @app.route('/start/', methods=['POST'])
 # def get_taxonomy():

@@ -8,3 +8,4 @@
 **/yarn-error.log
 /nc-psql-server/db/
 logfile
+**/__pycache__

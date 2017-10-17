@@ -44,7 +44,7 @@ module.exports = function(grunt) {
         cmd: [
           'virtualenv -p python3 nc-hub-server',
           'source ./nc-hub-server/bin/activate',
-          'pip install Flask',
+          'pip install',
           'deactivate'
         ].join('&&')
       },
@@ -53,8 +53,7 @@ module.exports = function(grunt) {
         cmd: [
           'virtualenv -p python3 nc-psql-server',
           'source ./nc-psql-server/bin/activate',
-          'pip install Flask',
-          'pip install flask_sqlalchemy',
+          'pip install',
           'deactivate'
         ].join('&&')
       }

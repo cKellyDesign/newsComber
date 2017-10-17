@@ -1,14 +1,15 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import requests
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.debug = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/newscomb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+CORS(app)
 
 db = SQLAlchemy(app)
-
 
 class Site(db.Model):
   __tablename__ = "sites"
@@ -39,7 +40,8 @@ def addSite():
     site = Site(baseurl=baseurl)
     db.session.add(site)
     db.session.commit()
-  return Site.query.filter_by(baseurl=baseurl).first()
+    site = Site.query.filter_by(baseurl=baseurl).first()
+  return {baseurl: site.baseurl}
 
 
 
@@ -48,7 +50,8 @@ def getSite():
   baseurl = url
   doesExist = Site.query.filter_by(baseurl=baseurl).count()
   if doesExist != 0:
-    return Site.query.filter_by(baseurl=baseurl).first()
+    site = Site.query.filter_by(baseurl=baseurl).first()
+    return {baseurl: site.baseurl}
   else: 
     return False
 

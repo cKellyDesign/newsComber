@@ -31432,7 +31432,7 @@ var InitForm = function (_React$Component) {
         method: "POST",
         url: 'http://localhost:5000/sites',
         data: { baseurl: url },
-        dataType: "jsonp",
+        // dataType: "jsonp",
         cache: false
       }).done(function (res) {
         console.log('RES!!!!', res);
