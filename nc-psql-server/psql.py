@@ -24,36 +24,38 @@ class Site(db.Model):
 
 
 
-# @app.route('/')
-# def testdb():
-#   try:
-#     q = db.session.query(Site)
-#     return q 
-#   except:
-#     return '<h1>Something is broken.</h1>'
+@app.route('/')
+def testdb():
+  # try:
+  q = Site.query.all()
+  return q[0].baseurl
+  # return {text:'Hello'}
+  # except:
+  #   return '<h1>Something is broken.</h1>'
 
 @app.route('/addSite/<url>', methods=['POST'])
-def addSite():
-  baseurl = url
-  doesExist = Site.query.filter_by(baseurl=baseurl).count()
+def addSite(url):
+  doesExist = Site.query.filter_by(baseurl=url).count()
   if doesExist == 0:
-    site = Site(baseurl=baseurl)
+    site = Site(baseurl=url)
     db.session.add(site)
     db.session.commit()
-    site = Site.query.filter_by(baseurl=baseurl).first()
-  return {baseurl: site.baseurl}
+    newSite = Site.query.filter_by(baseurl=url).first()
+    return newSite.baseurl
+  else:
+    return 'site already exists : {}'.format(url)
 
 
 
 @app.route('/getSite/<url>', methods=['GET'])
-def getSite():
+def getSite(url):
   baseurl = url
   doesExist = Site.query.filter_by(baseurl=baseurl).count()
   if doesExist != 0:
     site = Site.query.filter_by(baseurl=baseurl).first()
-    return {baseurl: site.baseurl}
+    return site.baseurl
   else: 
-    return False
+    return 'Url Does Not Exist'
 
 
 

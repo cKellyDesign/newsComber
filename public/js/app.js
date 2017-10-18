@@ -31187,6 +31187,12 @@ var Progress = function Progress() {
   var action = arguments[1];
 
   switch (action.type) {
+    case _ActionTypes.SET_ROOT_URL:
+      var nextState = _extends({}, state);
+      nextState.current_step++;
+      nextState.total_progress++;
+      return nextState;
+      break;
     default:
       return state;
   }
@@ -31351,7 +31357,7 @@ var Main = function (_React$Component) {
         _react2.default.createElement(
           'h1',
           null,
-          'Let\'s comb some news!!'
+          'Let\'s comb through some news!!'
         ),
         _react2.default.createElement(_InitForm2.default, { setRootSite: this.props.setRootSite })
       );
@@ -31429,14 +31435,14 @@ var InitForm = function (_React$Component) {
       var _this2 = this;
 
       $.ajax({
-        method: "POST",
+        method: "GET",
         url: 'http://localhost:5000/sites',
         data: { baseurl: url },
         // dataType: "jsonp",
         cache: false
       }).done(function (res) {
         console.log('RES!!!!', res);
-        _this2.props.setRootSite(url);
+        if (res.baseurl !== "Url Does Not Exist") _this2.props.setRootSite(url);
       }).fail(function (req, err) {
         console.log('FAIL!!!', err);
       });

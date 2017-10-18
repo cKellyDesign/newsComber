@@ -26,6 +26,12 @@ const initProgressState = {
 
 const Progress = (state = initProgressState, action) => {
   switch (action.type) {
+    case SET_ROOT_URL:
+      const nextState = {...state};
+      nextState.current_step++;
+      nextState.total_progress++;
+      return nextState;
+    break;
     default:
       return state;
   }

@@ -28,7 +28,7 @@ class Main extends React.Component {
   render() {
     return (
       <section id="main">
-        <h1>Let's comb some news!!</h1>
+        <h1>Let's comb through some news!!</h1>
         <InitForm setRootSite={this.props.setRootSite} />
       </section>
     );

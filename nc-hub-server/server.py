@@ -9,22 +9,20 @@ CORS(app)
 # Define app routes
 @app.route('/')
 def send_index():
-  return '<h1>hello world</h1>'
+  r = requests.get('http://localhost:5001/')
+  return jsonify(baseurl=r.text)
+  # return r.text
 
 @app.route('/sites', methods=['GET', 'POST'])
 def sites():
-  baseurl = request.args.get('baseurl', type=str)
-  # print('~~~~~~~~~~~ baseurl %r' % baseurl)
-  # queryURL = 'http://localhost:5001/%r' % baseurl
+  baseurl = request.values.get('baseurl')
   if request.method == 'POST':
     queryURL = 'http://localhost:5001/addSite/%r' % baseurl
     r = requests.post(queryURL)
   else:
     queryURL = 'http://localhost:5001/getSite/%r' % baseurl
     r = requests.get(queryURL)
-
-  # print('~~~~~~~~~~~ r.baseurl %r' % r.baseurl)
-  return jsonify(res=r.baseurl)
+  return jsonify(baseurl=r.text)
 
 # @app.route('/start/', methods=['POST'])
 # def get_taxonomy():

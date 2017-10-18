@@ -11,7 +11,7 @@ class InitForm extends React.Component {
 
   submitSite(url) {
     $.ajax({
-      method: "POST",
+      method: "GET",
       url: 'http://localhost:5000/sites',
       data: { baseurl: url },
       // dataType: "jsonp",
@@ -19,7 +19,8 @@ class InitForm extends React.Component {
     })
     .done((res) => {
       console.log('RES!!!!', res);
-      this.props.setRootSite(url);
+      if (res.baseurl !==  "Url Does Not Exist")
+        this.props.setRootSite(url);
     })
     .fail((req, err) => {
       console.log('FAIL!!!', err);
